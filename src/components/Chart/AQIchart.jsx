@@ -65,7 +65,7 @@ const AQIGauge = ({ value }) => {
         />
       </RadialBarChart>
 
-      {!value ? '': <p className="text-2xl font-bold relative bottom-15 flex items-center justify-center flex-col flex-wrap tracking-widest ">{value}
+      {!value ? <p className="text-[25px] flex justify-center items-center relative bottom-15 text-[#aaaa] tracking-widest ">Loading....</p>: <p className="text-2xl font-bold relative bottom-15 flex items-center justify-center flex-col flex-wrap tracking-widest ">{value}
         <span className="text-[10px] font-medium text-[#dadada] tracking-normal">AQI</span>
          </p>}
          {!value ?'':<p className="text-xs text-[#bfbfbf] relative bottom-12 tracking-wider">{category}</p>}

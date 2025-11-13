@@ -14,7 +14,7 @@ const ShowAqi = () => {
             shadow-lg 
             shadow-black/20 w-[300px] h-[250px] flex flex-col`}
     >
-      <h2 className="text-[30px] tracking-widest">AQI INDEX</h2>
+      <h2 className="text-[25px] tracking-widest">AQI INDEX</h2>
       <div className="">
         {" "}
         <AQIGauge value={Aqi} />
