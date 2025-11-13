@@ -13,7 +13,34 @@ const Context = (props) => {
   const [autoData, setAutoData] = useState(null); 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [locality, setlocality] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+
   const apiKey = "XGHPJVA4GQ35TTK2UBJFFSZVZ";
+
+ const fetchSuggestions = async (value) => {
+  if (!value) {
+    setSuggestions([]);
+    return;
+  }
+
+  try {
+    const url = `https://geocoding-api.open-meteo.com/v1/search?name=${value}&count=8`;
+    const res = await axios.get(url);
+
+   if (res.data && res.data.results) {
+      setSuggestions(res.data.results);
+    } else {
+      setSuggestions([]);
+    }
+  } catch (error) {
+    console.log("Suggestion error:", error);
+  }
+};
+
+
+
+
   const getWeather = async () => {
     if (!city) return;
     setError(null);
@@ -21,11 +48,13 @@ const Context = (props) => {
     try {
       const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=${apiKey}&contentType=json`;
       const res = await axios.get(url);
-      console.log("🔍 Manual Data:", res.data);
+        setlocality(res.data.resolvedAddress);
       setData(res.data.days.slice(0, 7));
+      console.log(res.data);
     } catch (err) {
       setError("City not found or API issue");
       setData(null);
+      setAutoData(null)
     } finally {
       setLoading(false);
     }
@@ -33,13 +62,20 @@ const Context = (props) => {
 
   const getAutoWeather = async (detectedCity) => {
     if (!detectedCity) return;
+    setError(null);
+    setLoading(true);
     try {
       const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${detectedCity}?unitGroup=metric&key=${apiKey}&contentType=json`;
       const res = await axios.get(url);
-      console.log("📍 Auto Data:", res.data);
+       setlocality(res.data.resolvedAddress);
       setAutoData(res.data.days.slice(0, 7));
     } catch (err) {
+      setError("City not found or API issue");
+      setAutoData(null);
+      setData(null);
       console.error("Auto weather fetch failed:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -64,6 +100,11 @@ const Context = (props) => {
         getAutoWeather,
         loading,
         error,
+        locality,
+        setlocality,
+        suggestions, 
+        setSuggestions,
+        fetchSuggestions
       }}
     >
       {props.children}

@@ -15,12 +15,11 @@ const Head2 = () => {
     "partly-cloudy-night": cloudyIcon,
     cloudy: cloudyIcon,
     overcast: cloudyIcon,
-    rain: rainIcon,
+    rain: cloudyIcon,
     "rain-showers-day": rainIcon,
     "rain-showers-night": rainIcon,
     thunderstorm: stormIcon,
   };
-
   const {
     Theme,
     setTheme,
@@ -33,25 +32,52 @@ const Head2 = () => {
     autoCountry,
     loading,
     error,
+    locality,
+    setlocality
   } = useContext(context);
 
   const [hoveridx, setHoveridx] = useState(null);
   const idxtoday = 0;
 
-  const displayData = data && data.length > 0 ? data : autoData;
+  const displayData =   data && data.length > 0 ? data : autoData;
   const displayCountry = data && data.length > 0 ? "" : autoCountry;
+  const displayLocality = locality && locality.length>0 ? locality:null;
 
+ if (loading) {
+    return (
+      <div className="w-full h-[300px] flex justify-center items-center">
+        <div className="animate-spin rounded-full h-14 w-14 border-4 border-[#7d878c] border-t-transparent"></div>
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="h-[250px] flex justify-center items-center">
+        <div className=" h-fit w-fit mt-3 px-5 py-2 bg-red-500/20 border border-red-400 text-red-300 rounded-lg text-sm ">
+        {error}
+      </div>
+      </div>
+    );
+  }
   if (!displayData || displayData.length === 0) {
     return (
-      <div className="text-center text-gray-500 py-10">
+     <div className="h-[250px] flex justify-center items-center">
+       <div className="text-center text-gray-500 py-10">
         Search for a city or allow location 🌦️
       </div>
+     </div>
     );
   }
 
   return (
     <div className="w-full flex flex-col items-center">
+      
+      {displayLocality && (<h2 className="text-[20px] text-[#dadada] px-10 py-2 border-2 border-[#272727] rounded-full bg-[#7d878c]">
+    {displayLocality?.charAt(0).toUpperCase() + displayLocality?.slice(1)}
+
+  </h2>)}
       <div className="w-full flex justify-around flex-wrap overflow-auto p-5 gap-4">
+
         {displayData.map((day, idx) => (
           <div
             key={idx}
@@ -68,15 +94,15 @@ const Head2 = () => {
             {hoveridx === idx || (hoveridx === null && idx === idxtoday) ? (
               <>
                 <div className="w-full flex gap-2 flex-col">
-                  <div className="flex justify-evenly items-center border-b border-[#8b8b8b] gap-4">
+                  <div className={`flex  items-center border-b border-[#8b8b8b] ${idx==0 ? "gap-4 justify-evenly" :"justify-between"}`}>
                     <h1 id="day" className="text-[18px] text-[#111] font-semibold">
                       {new Date(day.datetime).toLocaleDateString("en-US", {
                         weekday: "long",
                       })}
                     </h1>
-                    <div id="digital">
+                    {idx==0 && (<div id="digital">
                       <LiveClock/>
-                    </div>
+                    </div>)}
                     <p id="date" className="text-[14px] text-[#111] font-bold">
                       {day.datetime}
                     </p>

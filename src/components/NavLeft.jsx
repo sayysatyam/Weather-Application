@@ -29,7 +29,7 @@ const NavLeft = () => {
         <div className="flex items-center gap-1">
           <MapPin size={22} strokeWidth={1.75} />
           <h4 className="text-sm sm:text-base flex flex-wrap gap-1 items-center ">
-            {autoCity} 
+            {autoCity} {autoCountry && (<span>,</span>)}
             <span className="text-gray-400 text-xs sm:text-sm relative top-px">{autoCountry}</span>
           </h4>
         </div>

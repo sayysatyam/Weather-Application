@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from './head'
-import Head2 from './head2'
+import Head2 from './main-data'
 import Head3 from './head3'
 import Head4 from './Head4'
 

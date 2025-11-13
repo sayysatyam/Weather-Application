@@ -46,7 +46,7 @@ const AutoLocationPopup = () => {
           },
           (error) => {
             setMessage("🚫 Location Denied");
-            setTimeout(() => setMessage(null), 2500);
+            setTimeout(() => setMessage(null), 1500);
             console.warn("Location error:", error.message);
           }
         );
