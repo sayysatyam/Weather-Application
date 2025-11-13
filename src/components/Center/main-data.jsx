@@ -76,7 +76,7 @@ const Head2 = () => {
     {displayLocality?.charAt(0).toUpperCase() + displayLocality?.slice(1)}
 
   </h2>)}
-      <div className="w-full flex justify-around flex-wrap overflow-auto p-5 gap-4">
+      <div className="w-full flex justify-around flex-wrap overflow-auto px-5 py-3 gap-4">
 
         {displayData.map((day, idx) => (
           <div
@@ -86,8 +86,8 @@ const Head2 = () => {
             className={`relative text-white rounded-3xl shadow-lg transition-all duration-500 ease-in-out overflow-hidden
             ${
               hoveridx === idx || (hoveridx === null && idx === idxtoday)
-                ? "w-[280px] h-[250px] px-4 py-2 bg-[#7d878c]"
-                : "w-[100px] h-[220px] px-4 py-2 bg-[#272727]"
+                ? "w-[280px] h-60 px-4 py-2 bg-[#7d878c]"
+                : "w-[100px] h-60 px-4 py-2 bg-[#272727]"
             }
             flex flex-col justify-between items-center font-[Poppins]`}
           >

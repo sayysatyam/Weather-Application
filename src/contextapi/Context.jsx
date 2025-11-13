@@ -15,7 +15,8 @@ const Context = (props) => {
   const [error, setError] = useState(null);
   const [locality, setlocality] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-
+  const [Aqi, setAqi] = useState(null);
+  const [showHighlight, setshowHighlight] = useState("Today's Highlight");
   const apiKey = "XGHPJVA4GQ35TTK2UBJFFSZVZ";
 
  const fetchSuggestions = async (value) => {
@@ -37,6 +38,36 @@ const Context = (props) => {
     console.log("Suggestion error:", error);
   }
 };
+  
+const fetchAQI = async (lat, lon) => {
+  try {
+    const url = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${lat}&longitude=${lon}&hourly=us_aqi`;
+
+    console.log("AQI URL:", url);
+
+    const res = await axios.get(url);
+
+    const now = new Date();
+    const currentUTC = now.toISOString().slice(0, 13) + ":00";
+    const index = res.data.hourly.time.indexOf(currentUTC);
+
+    let currentAQI = null;
+    if (index !== -1) {
+      currentAQI = res.data.hourly.us_aqi[index];
+    } else {
+      currentAQI = res.data.hourly.us_aqi[0]; 
+    }
+    setAqi(currentAQI);
+  } catch (err) {
+    console.error("AQI Fetch Error:", err);
+    setAqi(null);
+  }
+};
+
+
+
+
+
 
 
 
@@ -51,10 +82,14 @@ const Context = (props) => {
         setlocality(res.data.resolvedAddress);
       setData(res.data.days.slice(0, 7));
       console.log(res.data);
+       const lat = res.data.latitude;
+    const lon = res.data.longitude;
+      fetchAQI(lat, lon);
     } catch (err) {
       setError("City not found or API issue");
       setData(null);
       setAutoData(null)
+      setAqi(null);
     } finally {
       setLoading(false);
     }
@@ -69,6 +104,10 @@ const Context = (props) => {
       const res = await axios.get(url);
        setlocality(res.data.resolvedAddress);
       setAutoData(res.data.days.slice(0, 7));
+             const lat = res.data.latitude;
+    const lon = res.data.longitude;
+      fetchAQI(lat, lon);
+
     } catch (err) {
       setError("City not found or API issue");
       setAutoData(null);
@@ -104,7 +143,11 @@ const Context = (props) => {
         setlocality,
         suggestions, 
         setSuggestions,
-        fetchSuggestions
+        fetchSuggestions,
+        setAqi,
+        Aqi,
+        showHighlight,
+        setshowHighlight
       }}
     >
       {props.children}

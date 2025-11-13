@@ -1,23 +1,22 @@
 import { useContext } from "react";
+import { context } from "../../contextapi/Context";
 import NavLeft from "./NavLeft";
 import Navright from "./Navright";
-import { context } from "../contextapi/Context";
 import Navmiddle from "./Navmiddle";
-
 
 const Navbar = () => {
   const {
-      Theme,
-      setTheme,
-      isOpen,
-         setisOpen,
-      city,
-      setCity,
-      data,
-      getWeather,
-      loading,
-      error
-    } = useContext(context);
+    Theme,
+    setTheme,
+    isOpen,
+    setisOpen,
+    city,
+    setCity,
+    data,
+    getWeather,
+    loading,
+    error,
+  } = useContext(context);
 
   return (
     <div
@@ -28,8 +27,6 @@ const Navbar = () => {
       <NavLeft/>
       <Navright/>
       <Navmiddle/>
-       
-      
     </div>
   );
 };

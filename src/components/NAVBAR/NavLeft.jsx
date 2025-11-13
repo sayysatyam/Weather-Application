@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { SquareMenu, Bell, MapPin } from "lucide-react";
-import { context } from '../contextapi/Context';
+import { context } from '../../contextapi/Context';
+
 const NavLeft = () => {
  const {
      Theme,

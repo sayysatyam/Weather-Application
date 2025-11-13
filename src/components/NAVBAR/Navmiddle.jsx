@@ -1,8 +1,7 @@
 import React from 'react'
 import { Moon, Sun} from "lucide-react";
 import { useContext } from 'react';
-import { context } from '../contextapi/Context';
-import LiveClock from './LiveClock/liveclock';
+import { context } from '../../contextapi/Context';
 const Navmiddle = () => {
  const {
      Theme,
