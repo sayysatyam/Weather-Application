@@ -6,6 +6,7 @@ import Center from "./components/Center/Center";
 import Right from "./components/RightSideBar/Right";
 import AutoLocation from "./components/location/location";
 import Side from "./components/LeftSideBar/LeftSide";
+import ShowWindData from "./components/Data/ShowWindData";
 
 const App = () => {
   const {

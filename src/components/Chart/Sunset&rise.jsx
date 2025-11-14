@@ -5,7 +5,7 @@ export default function SunriseSunset({ sunrise, sunset }) {
   const sunY = 10;
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center relative bottom-6">
+    <div className="w-full h-full flex flex-col items-center justify-center relative bottom-3">
       
       <svg 
         viewBox="0 0 100 60" 
@@ -36,7 +36,7 @@ export default function SunriseSunset({ sunrise, sunset }) {
           <p className="text-gray-300 text-sm">{sunrise}</p>
         </div>
 
-        <div className="text-center relative bottom-7 left-5">
+        <div className="text-center relative bottom-6 left-5">
           <p className="text-yellow-400 text-sm">Sunset</p>
           <p className="text-gray-300 text-sm">{sunset}</p>
         </div>

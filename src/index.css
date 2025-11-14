@@ -26,3 +26,6 @@
 #suggestion::-webkit-scrollbar {
   display: none;
 }
+#windscroll::-webkit-scrollbar{
+  display: none;
+}
