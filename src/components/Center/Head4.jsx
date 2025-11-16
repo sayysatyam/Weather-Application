@@ -24,7 +24,7 @@ const Head4 = () => {
         setshowHighlight
     } = useContext(context);
   return (
-    <div className={`bg-white/5 backdrop-blur-3xl border border-white/10 w-full h-fit rounded-2xl py-2 px-6  `}>
+    <div className={`bg-white/5 backdrop-blur-3xl border border-white/10 w-full h-fit rounded-2xl py-2 px-4 `}>
         {showHighlight === "Today's Highlight" ? <TodayHighlight/> : ""}
     </div>
     

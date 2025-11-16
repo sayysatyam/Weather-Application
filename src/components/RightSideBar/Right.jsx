@@ -1,9 +1,14 @@
 import React from 'react'
+import Humidity from './humidity'
+import Pressure from './pressure'
+import Visibility from './visibility'
 
 const Right = () => {
   return (
-    <div className=' bg-blue-100 w-[20%] p-5 '>
-      Hello
+    <div className=' w-[20%] text-white flex  flex-wrap gap-12 p-5  '>
+      <Humidity/>
+       <Pressure/>
+       <Visibility/>
     </div>
   )
 }

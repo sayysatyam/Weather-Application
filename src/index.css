@@ -29,3 +29,18 @@
 #windscroll::-webkit-scrollbar{
   display: none;
 }
+#text{
+  font-family: 'Orbitron', sans-serif;
+}
+/* #aqi::after{
+  content: "";
+  height: 100%;
+  width:100%;
+  background-image:linear-gradient(#245643,#FBB1B0,#FF5959,#A66CC1,#324F7B);
+  position:absolute;
+  transform: translate(-8%,-3%);
+  z-index: -1;
+  border-radius:16px;
+  padding : 2px 6px;
+            
+} */

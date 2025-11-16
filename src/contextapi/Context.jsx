@@ -100,6 +100,7 @@ const fetchAQI = async (lat, lon) => {
       const res = await axios.get(url);
        setlocality(res.data.resolvedAddress);
       setAutoData(res.data.days.slice(0, 7));
+      console.log(res.data)
              const lat = res.data.latitude;
     const lon = res.data.longitude;
       fetchAQI(lat, lon);

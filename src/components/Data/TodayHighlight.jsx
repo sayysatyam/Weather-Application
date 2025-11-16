@@ -6,7 +6,7 @@ const TodayHighlight = () => {
   return (
     <div>
       <p>Today's Highlight</p>
-              <div className='flex justify-evenly gap-5 p-2 flex-wrap w-auto'>
+              <div className='flex justify-around gap-10 p-2 flex-wrap w-auto'>
                 <ShowWindData/>
              <ShowSunsetSunrise/>
              <ShowAqi/>
