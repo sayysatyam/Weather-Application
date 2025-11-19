@@ -6,7 +6,6 @@ import Center from "./components/Center/Center";
 import Right from "./components/RightSideBar/Right";
 import AutoLocation from "./components/location/location";
 import Side from "./components/LeftSideBar/LeftSide";
-import ShowWindData from "./components/Data/ShowWindData";
 
 const App = () => {
   const {
@@ -29,8 +28,9 @@ const App = () => {
     >
       <AutoLocation />
       <Navbar />
-      <div className="flex w-screen h-full ">
-        <Side/>
+      <div className="flex w-screen h-full flex-col md:flex-row ">
+          <Side/>
+
         <Center />
         <Right />
       </div>

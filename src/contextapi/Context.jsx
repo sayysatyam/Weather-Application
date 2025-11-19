@@ -18,6 +18,8 @@ const Context = (props) => {
   const [Aqi, setAqi] = useState(null);
   const [showHighlight, setshowHighlight] = useState("Today's Highlight");
   const [WindSpeed, setWindSpeed] = useState([]);
+  const [TempHourly, setTempHourly] = useState([]);
+  const [hoveridx, setHoveridx] = useState(null);
   const apiKey = "XGHPJVA4GQ35TTK2UBJFFSZVZ";
 
  const fetchSuggestions = async (value) => {
@@ -77,6 +79,8 @@ const fetchAQI = async (lat, lon) => {
         const currdata = res.data?.days[0];
         const hrdata = currdata?.hours;
         setWindSpeed(hrdata);
+        setTempHourly(hrdata);
+        console.log(hrdata);
        const lat = res.data.latitude;
         const lon = res.data.longitude;
       fetchAQI(lat, lon);
@@ -100,13 +104,13 @@ const fetchAQI = async (lat, lon) => {
       const res = await axios.get(url);
        setlocality(res.data.resolvedAddress);
       setAutoData(res.data.days.slice(0, 7));
-      console.log(res.data)
              const lat = res.data.latitude;
     const lon = res.data.longitude;
       fetchAQI(lat, lon);
       const currdata = res.data?.days[0];
         const hrdata = currdata?.hours;
         setWindSpeed(hrdata);
+        setTempHourly(hrdata);
 
     } catch (err) {
       setError("City not found or API issue");
@@ -150,7 +154,11 @@ const fetchAQI = async (lat, lon) => {
         showHighlight,
         setshowHighlight,
         WindSpeed,
-        setWindSpeed
+        setWindSpeed,
+        TempHourly,
+        setTempHourly,
+        hoveridx,
+        setHoveridx
       }}
     >
       {props.children}

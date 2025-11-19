@@ -6,13 +6,24 @@ import Head4 from './Head4'
 
 const Center = () => {
   return (
-    <div className=' w-[83%] flex flex-col justify-start h-screen'>
-      <Head/>
-      <Head2/>
-      <Head3/>
-      <Head4/>
+    <div
+      className="
+        w-[83%] flex flex-col justify-start h-screen
+        max-md:w-full 
+        max-md:px-4
+        max-md:flex
+        max-md:flex-col
+        max-md:items-center
+        max-md:justify-start
+      "
+    >
+      <Head />
+      <Head2 />
+      <Head3 />
+      <Head4 />
     </div>
-  )
-}
+  );
+};
 
-export default Center
+export default Center;
+

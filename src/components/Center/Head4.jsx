@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { context } from '../../contextapi/Context'
 import AQIGauge from '../Chart/AQIchart';
 import TodayHighlight from '../Data/TodayHighlight';
+import HourlyForecast from '../Data/HourlyForecast';
 const Head4 = () => {
    const {
       Theme,
@@ -24,8 +25,8 @@ const Head4 = () => {
         setshowHighlight
     } = useContext(context);
   return (
-    <div className={`bg-white/5 backdrop-blur-3xl border border-white/10 w-full h-fit rounded-2xl py-2 px-4 `}>
-        {showHighlight === "Today's Highlight" ? <TodayHighlight/> : ""}
+    <div className={`bg-white/5 backdrop-blur-3xl border border-white/10 w-full h-80 rounded-2xl py-2 px-4 overflow-x-auto`}>
+        {showHighlight === "Today's Highlight" ? <TodayHighlight/> : <HourlyForecast/>}
     </div>
     
   )

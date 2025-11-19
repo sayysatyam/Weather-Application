@@ -29,6 +29,9 @@
 #windscroll::-webkit-scrollbar{
   display: none;
 }
+#forecastscroll::-webkit-scrollbar{
+  display: none;
+}
 #text{
   font-family: 'Orbitron', sans-serif;
 }
